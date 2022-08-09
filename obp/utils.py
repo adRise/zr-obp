@@ -74,6 +74,7 @@ def estimate_confidence_interval_by_bootstrap(
         alpha=alpha, n_bootstrap_samples=n_bootstrap_samples, random_state=random_state
     )
 
+    print("using bootstrap to calculate {} samples".format(samples.shape[0]))
     res = bootstrap(samples, np.std, n_resamples=n_bootstrap_samples, confidence_level=(1.0 - alpha / 2), random_state=random_state)
     return {
         f"{100 * (1. - alpha)}% CI (lower)": res.confidence_interval.low,
