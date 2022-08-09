@@ -74,16 +74,11 @@ def estimate_confidence_interval_by_bootstrap(
         alpha=alpha, n_bootstrap_samples=n_bootstrap_samples, random_state=random_state
     )
 
-    boot_samples = list()
-    random_ = check_random_state(random_state)
-    for _ in np.arange(n_bootstrap_samples):
-        boot_samples.append(np.mean(random_.choice(samples, size=samples.shape[0])))
-    lower_bound = np.percentile(boot_samples, 100 * (alpha / 2))
-    upper_bound = np.percentile(boot_samples, 100 * (1.0 - alpha / 2))
+    res = bootstrap(samples, np.std, n_resamples=n_bootstrap_samples, confidence_level=(1.0 - alpha / 2), random_state=random_state)
     return {
-        "mean": np.mean(boot_samples),
-        f"{100 * (1. - alpha)}% CI (lower)": lower_bound,
-        f"{100 * (1. - alpha)}% CI (upper)": upper_bound,
+        f"{100 * (1. - alpha)}% CI (lower)": res.confidence_interval.low,
+        f"{100 * (1. - alpha)}% CI (upper)": res.confidence_interval.high,
+        f"std_err": res.standard_error,
     }
 
 
