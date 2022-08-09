@@ -36,7 +36,7 @@ setup(
         "torch>=1.9.0",
         "tqdm>=4.62.2",
         "pyieoe>=0.1.1",
-        "pingouin>=0.4.0",
+        "pingouin>=0.5.0",
     ],
     license="Apache License",
     packages=find_packages(
