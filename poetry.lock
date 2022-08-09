@@ -303,7 +303,7 @@ tests = ["check-manifest", "coverage", "defusedxml", "markdown2", "olefile", "pa
 
 [[package]]
 name = "pingouin"
-version = "0.4.0"
+version = "0.5.0"
 description = "Pingouin: statistical package for Python"
 category = "main"
 optional = false
